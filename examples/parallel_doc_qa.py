@@ -25,10 +25,9 @@ def app_gui():
     # Define the agent
     bot = ParallelDocQA(
         llm={
-            'model': 'qwen2.5-72b-instruct',
-            'generate_cfg': {
-                'max_retries': 10
-            }
+            'model': 'qwen2.5:0.5b',
+            'model_server': 'http://localhost:11434/v1',  # base_url，也称为 api_base
+            'api_key': 'ollama',
         },
         description='并行QA后用RAG召回内容并回答。支持文件类型：PDF/Word/PPT/TXT/HTML。使用与材料相同的语言提问会更好。',
     )
