@@ -11,9 +11,13 @@ class DocLoader():
         Available documentation formats are Word, TXT, HTML and markdown.
         doc_path: str
             The path to the documentation file. 
-            default: prag/docs
+            default: prag/docs/raw_data
+
+        methods:
+            load_doc: dict
+                Load documentation files from target path and return the content.
     '''
-    def __init__(self, doc_path: str = 'prag/docs'):
+    def __init__(self, doc_path: str = 'prag/docs/raw_data'):
         self.doc_path = doc_path
 
     def load_doc(self) -> dict:
@@ -37,10 +41,15 @@ class DocLoader():
 
     def load_txt(self, file_path: str) -> str:
         '''
-        Load txt file and return the content.
+        Load txt file and return the content as dict, key is the first line of the file.
         '''
+        file_content = ''
+        file_title = ''
         with open(file_path, 'r') as f:
-            return f.read()
+            file_title = f.readline().strip()
+            file_content = f.read()
+        return dict(title=file_title, content=file_content)
+
     def load_docx(self, file_path: str) -> str:
         '''
         Load docx file and return the content.
