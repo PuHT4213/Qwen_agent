@@ -1,9 +1,25 @@
 from qwen_agent.agents.doc_qa import ParallelDocQA
 from qwen_agent.gui import WebUI
+lm_cfg = {
+    # 使用 DashScope 提供的模型服务：
+    # 'model': 'qwen-max',
+    # 'model_server': 'dashscope',
+    # 'api_key': 'sk-f149f1eb1e224d9497a42ad9768fe7c7',
+    # 如果这里没有设置 'api_key'，它将读取 `DASHSCOPE_API_KEY` 环境变量。
 
+    # 使用与 OpenAI API 兼容的模型服务，例如 vLLM 或 Ollama：
+    'model': 'qwen2.5:0.5b',
+    'model_server': 'http://localhost:11434/v1',  # base_url，也称为 api_base
+    'api_key': 'ollama',
+
+    # （可选） LLM 的超参数：
+    # 'generate_cfg': {
+    #     'top_p': 0.8
+    # }
+}
 
 def test():
-    bot = ParallelDocQA(llm={'model': 'qwen2.5-72b-instruct', 'generate_cfg': {'max_retries': 10}})
+    bot = ParallelDocQA(llm=lm_cfg)
     messages = [
         {
             'role': 'user',
@@ -12,13 +28,14 @@ def test():
                     'text': '介绍实验方法'
                 },
                 {
-                    'file': 'https://arxiv.org/pdf/2310.08560.pdf'
+                    'file': 'examples/resource/2021.txt'
                 },
             ]
         },
     ]
     for rsp in bot.run(messages):
-        print('bot response:', rsp)
+        pass
+    print('bot response:', rsp)
 
 
 def app_gui():
@@ -38,5 +55,5 @@ def app_gui():
 
 
 if __name__ == '__main__':
-    # test()
-    app_gui()
+     test()
+    # app_gui()

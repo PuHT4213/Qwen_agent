@@ -21,9 +21,10 @@ llm_cfg = {
 
 def test():
     bot = Assistant(name='Assistant',llm=llm_cfg)
-    messages = [{'role': 'user', 'content': [{'text': '介绍图一'}, {'file': 'file:///Users/pu_ht/src/Qwen-Agent/examples/resource/doc.pdf'}]}]
+    messages = [{'role': 'user', 'content': [{'text': '请将文档中的内容复述一遍'}, {'file': 'examples/resource/2021_part1.txt'}]}]
     for rsp in bot.run(messages):
-        print(rsp)
+        pass
+    print(rsp)
 
 def test2():
     system = '根据用户的要求，我会使用RAG模型检索并回答问题。'
@@ -31,7 +32,8 @@ def test2():
                     files=['file:///Users/pu_ht/src/Qwen-Agent/examples/resource/doc.pdf'])
     messages = [{'role': 'user', 'content': '请介绍附件中的文章'}]
     for rsp in bot.run(messages):
-        print(rsp)
+        pass
+    print(rsp)
     
 
 def app_gui():
@@ -54,6 +56,6 @@ def app_gui():
 
 
 if __name__ == '__main__':
-    # test()
-    app_gui()
+    test()
+    # app_gui()
     # test2()

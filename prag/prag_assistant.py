@@ -24,7 +24,8 @@ class PragAssistant():
     
     '''
     def __init__(self, llm=llm):
-        self.bot = Assistant(llm=llm)
+        self.system = '根据用户的要求，我会使用RAG模型检索并回答问题。'
+        self.bot = ParallelDocQA(llm=llm, system_message=self.system)
         self.messages = []
         self.response = []
 
