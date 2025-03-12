@@ -49,13 +49,13 @@
             <div class="query">
                 <span class="label">用户提问：</span> {{ query }}
             </div>
-            <div class="context">
-                <span class="label">检索提示：</span>
-                <pre>{{ context_message }}</pre>
-            </div>
             <div class="response">
                 <span class="label">机器人回应：</span>
                 <pre>{{ response_text }}</pre>
+            </div>
+            <div class="context">
+                <span class="label">检索提示：</span>
+                <pre>{{ context_message }}</pre>
             </div>
         </div>
         {% endif %}
