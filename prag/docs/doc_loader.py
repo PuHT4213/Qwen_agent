@@ -45,7 +45,7 @@ class DocLoader():
         '''
         file_content = ''
         file_title = ''
-        with open(file_path, 'r') as f:
+        with open(file_path, 'r',encoding='utf-8') as f:
             file_title = f.readline().strip()
             file_content = f.read()
         return dict(title=file_title, content=file_content)
@@ -89,8 +89,3 @@ if __name__ == '__main__':
     doc_loader = DocLoader()
     doc_content = doc_loader.load_doc()
     print(doc_content.keys())
-    # doc_loader.load_txt('prag/docs/doc.txt')
-    # doc_loader.load_docx('prag/docs/doc.docx')
-    # doc_loader.load_html('prag/docs/doc.html')
-    # doc_loader.load_md('prag/docs/doc.md')
-    # doc_loader.load_pdf('prag/docs/doc.pdf')
